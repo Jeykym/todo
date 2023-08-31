@@ -1,6 +1,9 @@
+import Header from "../Header/Header";
+
+
 const App = () => {
     return (
-        <h1>Running</h1>
+        <Header />
     );
 }
 
