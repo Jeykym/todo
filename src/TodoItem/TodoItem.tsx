@@ -1,12 +1,7 @@
-interface TodoItemProps {
-    id: number,
-    title: string,
-    description: string,
-    completed: boolean
-}
+import TodoItemType from "./types.d";
 
 
-const TodoItem = ({id, title, description, completed}: TodoItemProps) => {
+const TodoItem = ({id, title, description, completed}: TodoItemType) => {
     return (
         <div>
             <span><strong>Title: </strong>{title}</span>
