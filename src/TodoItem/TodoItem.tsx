@@ -1,8 +1,9 @@
 import { ChangeEvent } from 'react';
+import { Box, Button, Checkbox, ListItem, Typography } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 import TodoItemType from "./types.d";
-
-import './TodoItem.css';
 
 
 interface TodoItemProps {
@@ -29,14 +30,35 @@ const TodoItem = (props: TodoItemProps) => {
     }
 
     return (
-        <div className='todoItem'>
-            <div className='todoItem__info'>
-                <h4 className='todoItem__title'>{props.data.title}</h4>
-                <p className='todoItem__description'>{props.data.description}</p>
-            </div>
-            <input id="completed" type="checkBox" onChange={handleOnChange}></input>
-            <button onClick={() => {props.deleteItem(props.data.id)}}>Delete</button>
-        </div>
+        <ListItem sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+        }}>
+            <Box sx={{
+                display: 'flex'
+            }}>
+                <Checkbox 
+                    sx={{marginRight: "1rem"}}
+                    id="completed"
+                    checked={props.data.completed}
+                    onChange={handleOnChange} />
+                <Box sx={{opacity: props.data.completed ? '50%' : '100%'}}>
+                    <Typography variant='h5' sx={{margin: '0'}}>
+                        {props.data.title}
+                    </Typography>
+                    <Typography paragraph={true}>
+                        {props.data.description}
+                    </Typography>
+                </Box>
+            </Box>
+            <Button
+                variant="contained"
+                color="error"
+                onClick={() => {props.deleteItem(props.data.id)}}
+            >
+                <DeleteIcon /> Delete
+            </Button>
+        </ListItem>
     );
 }
 
