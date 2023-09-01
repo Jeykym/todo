@@ -5,6 +5,8 @@ import TodoItemType from "../TodoItem/types.d"
 import AddTodo from '../AddTodo/AddTodo';
 import TodoForm from '../TodoForm.tsx/TodoForm';
 
+import './TodoList.css';
+
 
 const TodoList = () => {
     const [id, setId] = useState(0);
@@ -33,13 +35,13 @@ const TodoList = () => {
     }
 
     return (
-        <div>
-            <ul className='todoList'>
+        <div className='todoList'>
+            <AddTodo setAddModal={setAddModal} />
+            <ul>
                 {todos.map(todo => (
                     <TodoItem data={todo} deleteItem={deleteItem} setTodos={setTodos} />
                 ))}
             </ul>
-            <AddTodo setAddModal={setAddModal} />
         </div>
     );
 }
