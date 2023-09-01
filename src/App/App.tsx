@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Dialog } from '@mui/material';
 import { Add } from '@mui/icons-material';
 
 import Header from "../Header/Header";
 import TodoList from "../TodoList/TodoList";
+import TodoForm from '../TodoForm/TodoForm';
 
 import TodoItemType from '../TodoItem/types.d';
 
@@ -24,14 +25,22 @@ const testData: TodoItemType[] = [
 
 
 const App = () => {
-    const [id, setId] = useState(0);
+    const [id, setId] = useState(testData.length + 1);
     const [todos, setTodos] = useState<TodoItemType[]>(testData);
-    const [addModal, setAddModal] = useState(false);
+    const [openForm, setOpenForm] = useState(false);
 
     const getId = (): number => {
         const currentId = id;
         setId((prevState: number) => (prevState + 1));
-        return currentId
+        return currentId;
+    }
+
+    const handleClickAdd = () => {
+        setOpenForm(true);
+    }
+
+    const handleClose = () => {
+        setOpenForm(false);
     }
 
     return (
@@ -46,9 +55,12 @@ const App = () => {
                 sx={{marginBottom: '2rem'}}
                 variant="contained"
                 size='large'
-                onClick={() => setAddModal(true)}>
+                onClick={handleClickAdd}>
                 <Add /> Add
             </Button>
+            <Dialog open={openForm} onClose={handleClose}>
+                <TodoForm getId={getId} setTodos={setTodos} handleClose={handleClose}/>
+            </Dialog>
             <TodoList todos={todos} setTodos={setTodos}/>
         </Box>
     );
