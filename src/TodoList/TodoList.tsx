@@ -18,6 +18,14 @@ const TodoList = () => {
         return currentId
     }
 
+
+    const deleteItem = (id: number) => {
+        // todos.filter((todo: TodoItemType) => todo.id !== id)
+        setTodos((prevState: TodoItemType[]) => (
+            prevState.filter((todo: TodoItemType) => todo.id !== id)
+        ));
+    }
+
     if (addModal) {
         return (
             <TodoForm getId={getId} setTodos={setTodos} setAddModal={setAddModal}/>
@@ -28,7 +36,7 @@ const TodoList = () => {
         <div>
             <ul>
                 {todos.map(todo => (
-                    <TodoItem {...todo} />
+                    <TodoItem data={todo} deleteItem={deleteItem} />
                 ))}
             </ul>
             <AddTodo setAddModal={setAddModal} />
