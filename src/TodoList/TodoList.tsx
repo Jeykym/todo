@@ -36,7 +36,7 @@ const TodoList = () => {
         <div>
             <ul>
                 {todos.map(todo => (
-                    <TodoItem data={todo} deleteItem={deleteItem} />
+                    <TodoItem data={todo} deleteItem={deleteItem} setTodos={setTodos} />
                 ))}
             </ul>
             <AddTodo setAddModal={setAddModal} />
