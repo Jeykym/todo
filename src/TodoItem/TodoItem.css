@@ -1,0 +1,27 @@
+.todoItem {
+    width: 20%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 1rem;
+
+}
+
+
+.todoItem__info {
+    margin-bottom: 1rem;
+    padding: .5rem 0 .5rem 1rem;
+}
+
+
+.todoItem__title,
+.todoItem__description {
+    margin: 0;
+}
+
+
+.todoItem__title {
+    margin-bottom: .5rem;
+}

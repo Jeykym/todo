@@ -2,6 +2,8 @@ import { ChangeEvent } from 'react';
 
 import TodoItemType from "./types.d";
 
+import './TodoItem.css';
+
 
 interface TodoItemProps {
     data: TodoItemType,
@@ -27,15 +29,13 @@ const TodoItem = (props: TodoItemProps) => {
     }
 
     return (
-        <div>
-            <span><strong>Title: </strong>{props.data.title}</span>
-            <br></br>
-            <span><strong>Description: </strong>{props.data.description}</span>
-            <br></br>
-            <strong>{props.data.completed ? 'Completed' : 'Pending'}</strong>
-            <br></br>
-            <button onClick={() => {props.deleteItem(props.data.id)}}>Delete</button>
+        <div className='todoItem'>
+            <div className='todoItem__info'>
+                <h4 className='todoItem__title'>{props.data.title}</h4>
+                <p className='todoItem__description'>{props.data.description}</p>
+            </div>
             <input id="completed" type="checkBox" onChange={handleOnChange}></input>
+            <button onClick={() => {props.deleteItem(props.data.id)}}>Delete</button>
         </div>
     );
 }

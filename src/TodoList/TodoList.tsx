@@ -34,7 +34,7 @@ const TodoList = () => {
 
     return (
         <div>
-            <ul>
+            <ul className='todoList'>
                 {todos.map(todo => (
                     <TodoItem data={todo} deleteItem={deleteItem} setTodos={setTodos} />
                 ))}
