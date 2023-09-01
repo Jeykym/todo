@@ -3,26 +3,26 @@ import { useState } from 'react';
 import TodoItem from "../TodoItem/TodoItem"
 import TodoItemType from "../TodoItem/types.d"
 import AddTodo from '../AddTodo/AddTodo';
-
-
-const todoDefault: TodoItemType[] = [
-    {
-        id: 1,
-        title: 'Todo Item',
-        description: 'This is a todo item',
-        completed: false
-    },
-    {
-        id: 2,
-        title: 'Another Todo Item',
-        description: 'This is another todo item',
-        completed: true
-    }
-];
+import TodoForm from '../TodoForm.tsx/TodoForm';
 
 
 const TodoList = () => {
-    const [todos, setTodos] = useState<TodoItemType[]>(todoDefault);
+    const [id, setId] = useState(0);
+    const [todos, setTodos] = useState<TodoItemType[]>([]);
+    const [addModal, setAddModal] = useState(false);
+
+
+    const getId = (): number => {
+        const currentId = id;
+        setId((prevState: number) => (prevState + 1));
+        return currentId
+    }
+
+    if (addModal) {
+        return (
+            <TodoForm getId={getId} setTodos={setTodos} setAddModal={setAddModal}/>
+        );
+    }
 
     return (
         <div>
@@ -31,7 +31,7 @@ const TodoList = () => {
                     <TodoItem {...todo} />
                 ))}
             </ul>
-            <AddTodo todos={todos} setTodos={setTodos}/>
+            <AddTodo setAddModal={setAddModal} />
         </div>
     );
 }

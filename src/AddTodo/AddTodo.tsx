@@ -1,26 +1,25 @@
-import TodoItemType from "../TodoItem/types.d";
-
+import { useState } from 'react';
 
 interface AddTodoProps {
-    todos: TodoItemType[]
-    setTodos: any
+    setAddModal: any
 }
 
 
 const AddTodo = (props: AddTodoProps) => {
-    const addTodo = () => {
-        const newTodo: TodoItemType = {
-            id: 1,
-            title: 'Added todo',
-            description: 'This todo was added',
-            completed: false
-        };
+    // const addTodo = () => {
+    //     const newTodo: TodoItemType = {
+    //         id: id,
+    //         title: `Added todo ${id}`,
+    //         description: 'This todo was added',
+    //         completed: Math.random() >= 0.5 ? true : false
+    //     };
 
-        props.setTodos([...props.todos, newTodo], );
-    }
+    //     props.setTodos([...props.todos, newTodo], );
+    //     setId(id + 1);
+    // }
 
     return (
-        <button onClick={addTodo}>Add Todo</button>
+        <button onClick={() => {props.setAddModal(true)}}>Add Todo</button>
     );
 }
 
