@@ -19,9 +19,11 @@ const TodoList = (props: TodoListProps) => {
     }
 
     return (
-        <List sx={{
-            width: "30%"
-        }}>
+        <List
+            sx={{
+                width: {xs: '100%', sm: '60%', md: '40%'}
+            }}
+        >
             {props.todos.map(todo => (
                 <TodoItem data={todo} deleteItem={deleteItem} setTodos={props.setTodos} />
             ))}
