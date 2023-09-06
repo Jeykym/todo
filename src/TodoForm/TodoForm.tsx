@@ -5,8 +5,11 @@ import {
     DialogContent, 
     FormGroup, 
     TextField,
-    Typography
+    Typography,
 } from '@mui/material';
+import { DateTimePicker } from '@mui/x-date-pickers';
+import dayjs, { Dayjs } from 'dayjs';
+
 
 import TodoItemType from '../TodoItem/types.d';
 
@@ -20,7 +23,9 @@ interface TodoFormProps {
 
 const TodoForm = (props: TodoFormProps) => {
     const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('')
+    const [description, setDescription] = useState('');
+    const [dueDate, setDueDate] = useState<Dayjs | null>(dayjs(new Date()));
+
 
     const handleSubmit = () => {
         props.setTodos((prevState: TodoItemType[]) => (
@@ -30,13 +35,14 @@ const TodoForm = (props: TodoFormProps) => {
                     id: props.getId(),
                     title: title,
                     description: description,
+                    due: dueDate,
                     completed: false
                 }
             ]
         ));
         props.handleClose();
     }
-    
+
 
     return (
         <DialogContent>
@@ -61,6 +67,12 @@ const TodoForm = (props: TodoFormProps) => {
                 rows={4}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+            />
+            <DateTimePicker 
+                sx={{margin: '1rem 0'}}
+                label="Due Date"
+                value={dueDate}
+                onChange={(newValue: Dayjs | null) => setDueDate(newValue)}
             />
         </FormGroup>
         <Box sx={{

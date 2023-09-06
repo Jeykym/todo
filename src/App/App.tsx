@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Box, Button, Dialog } from '@mui/material';
 import { Add } from '@mui/icons-material';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 import Header from "../Header/Header";
 import TodoList from "../TodoList/TodoList";
@@ -13,12 +15,14 @@ const testData: TodoItemType[] = [
         id: 1,
         title: 'Title 1',
         description: 'desciption 1',
+        due: new Date('2023-08-11T09:00:00'),
         completed: false
     },
     {
         id: 2,
         title: 'Title 2',
         description: 'desciption 2',
+        due: new Date('2023-06-11T11:35:00'),
         completed: true
     }
 ];
@@ -44,6 +48,7 @@ const App = () => {
     }
 
     return (
+        
         <Box sx={{
             display: 'flex',
             flexDirection: 'column',
@@ -59,7 +64,9 @@ const App = () => {
                 <Add /> Add
             </Button>
             <Dialog open={openForm} onClose={handleClose}>
-                <TodoForm getId={getId} setTodos={setTodos} handleClose={handleClose}/>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <TodoForm getId={getId} setTodos={setTodos} handleClose={handleClose}/>
+                </LocalizationProvider>
             </Dialog>
             <TodoList todos={todos} setTodos={setTodos}/>
         </Box>
