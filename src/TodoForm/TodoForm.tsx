@@ -33,8 +33,8 @@ const TodoForm = (props: TodoFormProps) => {
                 ...prevState,
                 {
                     id: props.getId(),
-                    title: title,
-                    description: description,
+                    title: title ? title : 'No Title',
+                    description: description ? description : 'No Description',
                     due: dueDate!.toDate(),
                     completed: false
                 }
