@@ -35,7 +35,7 @@ const TodoForm = (props: TodoFormProps) => {
                     id: props.getId(),
                     title: title,
                     description: description,
-                    due: dueDate,
+                    due: dueDate!.toDate(),
                     completed: false
                 }
             ]
