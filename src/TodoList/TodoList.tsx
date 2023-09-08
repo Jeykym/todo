@@ -42,7 +42,7 @@ const TodoList = (props: TodoListProps) => {
             display: 'flex',
             flexDirection: 'column',
         }}>
-            <Filter filter={filter} setFilter={setFilter} />
+            <Filter filterMap={filterMap} filter={filter} setFilter={setFilter} />
             <List>
                 {filterMap.get(filter)(props.todos).map((todo: TodoItemType) => (
                     <TodoItem data={todo} deleteItem={deleteItem} setTodos={props.setTodos} />

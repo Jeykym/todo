@@ -12,18 +12,10 @@ import {
 
 
 interface FilterProps {
-    filter: string,
+    filterMap: Map<string, any>,
+    filter: string
     setFilter: any
 }
-
-
-const filters = [
-    'All',
-    'Completed',
-    'Pending',
-    'Before due',
-    'After due'
-];
 
 
 const Filter = (props: FilterProps) => {
@@ -44,7 +36,7 @@ const Filter = (props: FilterProps) => {
                 value={props.filter}
                 onChange={(e: SelectChangeEvent) => props.setFilter(e.target.value)}
             >
-                {filters.map((filterName: string) => (
+                {Array.from(props.filterMap.keys()).map((filterName: string) => (
                     <MenuItem value={filterName}>{filterName}</MenuItem>
                 ))}
             </Select>
