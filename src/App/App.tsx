@@ -14,14 +14,14 @@ const testData: TodoItemType[] = [
     {
         id: 1,
         title: 'Title 1',
-        description: 'desciption 1',
+        description: 'description 1',
         due: new Date('2023-08-11T09:00:00'),
         completed: false
     },
     {
         id: 2,
         title: 'Title 2',
-        description: 'desciption 2',
+        description: 'description 2',
         due: new Date('2023-06-11T11:35:00'),
         completed: true
     }
